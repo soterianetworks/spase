@@ -2,7 +2,7 @@
 
 The SP integration library for CIP .
 
-The latest version is [0.9.0]
+The latest version is [0.9.0]()
 
 # Gradle 
 
@@ -167,20 +167,3 @@ public class DepartmentRepositoryImpl extends AbstractCustomRepository implement
 
 
 ```
-
-## Define your exception
-
-Remember to annotated the exception with Http Response Status 
-
-```
-
-@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class UserException extends ApplicationException {
-}
-
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends UserException {
-}
-
-``` 
-
