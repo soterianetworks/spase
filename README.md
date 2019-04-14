@@ -64,7 +64,7 @@ logging:
 
 ## Spring Boot Application
 
-Supply your ResourceBundleMessageSource. 
+Supply your ResourceBundleMessageSource
 
 ```
     @Bean
@@ -77,6 +77,30 @@ Supply your ResourceBundleMessageSource.
     }
 
 ```
+
+Enable SP Request Interceptor 
+
+```
+
+@Configuration
+public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(spRequestInterceptor())
+                .excludePathPatterns("put what you want to exclude")
+                .addPathPatterns("/**");
+    }
+
+    @Bean
+    public SpRequestInterceptor spRequestInterceptor() {
+        return new SpRequestInterceptor();
+    }
+
+}
+
+```
+
 
 # Development Guide
 
