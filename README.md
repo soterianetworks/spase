@@ -252,7 +252,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 | | UserRepository |
      
 
-## Inject Tenant Context in Rest Layer
+## Inject Tenant Context in Web Layer
 
 ```java
 
