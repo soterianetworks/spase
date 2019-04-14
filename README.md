@@ -64,21 +64,120 @@ logging:
 
 ## Spring Boot Application
 
-Supply your ResourceBundleMessageSource
+## I18n
+
+### Message
+
+Supply your ResourceBundleMessageSource (Which helps to generate the i18n Error Response )
 
 ```
+
+@Configuration
+public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
+
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:locale/messages");
         messageSource.setCacheSeconds(3600); //refresh cache once per hour
-
         return messageSource;
     }
 
+    @Bean
+    public Validator i18nValidator() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(messageSource());
+        return validator;
+    }
+
+}
+
 ```
 
-Enable SP Request Interceptor 
+### Enum
+
+
+Here is the I18nEnum definition:
+
+```
+package com.soterianetworks.spase.domain.enums.i18n;
+
+import java.util.Map;
+
+public interface I18nEnum {
+
+    Map<String, String> toMap();
+
+    String getEn();
+
+    String getZh();
+
+}
+```
+
+Supply your I18nEnum implementation , for example:
+
+```
+
+public enum MessageStatus implements GenericEnumConsts {
+
+    UNREAD("UNREAD", "未读"),
+
+    READ("READ", "已读");
+
+    private String en;
+
+    private String zh;
+
+    MessageStatus(String en, String zh) {
+        this.en = en;
+        this.zh = zh;
+    }
+
+    @Override
+    public Map<String, String> toMap() {
+        return ImmutableMap.<String, Object>builder()
+                .put("en", en)
+                .put("zh", zh)
+                .build();
+    }
+
+    @Override
+    public String getEn() {
+        return en;
+    }
+
+    @Override
+    public String getZh() {
+        return zh;
+    }
+
+}
+
+
+```
+
+
+Configure the Spring Boot Application with:
+
+
+```
+
+	@Bean
+	public I18nEnumRegistry I18nEnumRegistry() {
+		I18nEnumRegistry registry = new I18nEnumRegistry();
+		registry.setScanPackage("put your package which contains the i18n enum impl");
+		return registry;
+	}
+
+```
+
+> All the auto-registered I18nEnum instances can be retrieved by `I18nEnumRegistry#getEnums`
+
+
+## Interceptor
+
+Enable SP Request Interceptor (Which helps to generate the TenantContext for each Rest request)
 
 ```
 
@@ -101,6 +200,41 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 ```
 
+
+## Others
+
+```
+
+@Configuration
+public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.setUseSuffixPatternMatch(false);
+    }
+
+    @Bean
+    public FilterRegistrationBean shallowEtagHeaderFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        registration.setFilter(filter);
+        return registration;
+    }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();
+        resolver.setDefaultLocale(new Locale("en_US"));
+        return resolver;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
+```
 
 # Development Guide
 
