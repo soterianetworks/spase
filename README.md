@@ -7,8 +7,8 @@ The SP integration library for CIP .
 ## spase 
 
 ```groovy
-	compile("com.soterianetworks:spase-core:0.9.0")
-	compile("com.soterianetworks:spase-starter:0.9.0")
+compile("com.soterianetworks:spase-core:0.9.0")
+compile("com.soterianetworks:spase-starter:0.9.0")
 ```
 ## imported by spase
 
@@ -20,11 +20,11 @@ The SP integration library for CIP .
 ## 3rds
 
 ```groovy
-	compile("org.hibernate:hibernate-core:5.1.17.Final")
-	compile("org.hibernate:hibernate-validator:5.1.3.Final")
-	compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
-	compile("javax.validation:validation-api:1.1.0.Final")
-	compile("mysql:mysql-connector-java:5.1.47")
+compile("org.hibernate:hibernate-core:5.1.17.Final")
+compile("org.hibernate:hibernate-validator:5.1.3.Final")
+compile("org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.2.Final")
+compile("javax.validation:validation-api:1.1.0.Final")
+compile("mysql:mysql-connector-java:5.1.47")
 ```
 
 > fasterxml & jackson & hibernate will be auto imported by spring-boot
