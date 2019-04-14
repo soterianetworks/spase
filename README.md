@@ -2,8 +2,6 @@
 
 The SP integration library for CIP .
 
-The latest version is [0.9.0]()
-
 # Gradle 
 
 ## spase 
@@ -12,8 +10,14 @@ The latest version is [0.9.0]()
 	compile com.soterianetworks:spase-core:0.9.0
 	compile com.soterianetworks:spase-starter:0.9.0
 ```
+## imported by spase
 
-## 3rd
+* commons-logging:commons-logging:1.1.3
+* org.apache.commons:commons-lang3:3.8.1
+* com.google.guava:guava:21.0
+* org.torpedoquery:org.torpedoquery:2.5.1
+
+## 3rds
 
 ```
 	compile org.hibernate:hibernate-core:5.1.17.Final
@@ -23,20 +27,13 @@ The latest version is [0.9.0]()
 	compile mysql:mysql-connector-java:5.1.47
 ```
 
-> fasterxml & jackson & hibernate will be auto imported with spring-boot
-
-## auto imported
-
-* commons-logging:commons-logging:1.1.3
-* org.apache.commons:commons-lang3:3.8.1
-* com.google.guava:guava:21.0
-* org.torpedoquery:org.torpedoquery:2.5.1
+> fasterxml & jackson & hibernate will be auto imported by spring-boot
 
 # Configuration
 
 ## application.yml
 
-```aidl
+```yml
 spring:
   jpa:
     show-sql: true
@@ -55,11 +52,6 @@ spring:
     username:  ${DB_USER:spase_user}
     password:  ${DB_PASSWORD:spase_password}
 
-logging:
-  level:
-    root: INFO
-    org.torpedoquery.jpa: DEBUG
-    
 ```
 
 ## Spring Boot Application
@@ -70,7 +62,7 @@ logging:
 
 Supply your ResourceBundleMessageSource (Which helps to generate the i18n Error Response )
 
-```
+```java
 
 @Configuration
 public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
@@ -99,7 +91,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 Here is the I18nEnum definition:
 
-```
+```java
 package com.soterianetworks.spase.domain.enums.i18n;
 
 import java.util.Map;
@@ -117,8 +109,7 @@ public interface I18nEnum {
 
 Supply your I18nEnum implementation , for example:
 
-```
-
+```java
 public enum MessageStatus implements GenericEnumConsts {
 
     UNREAD("UNREAD", "未读"),
@@ -161,7 +152,7 @@ public enum MessageStatus implements GenericEnumConsts {
 Configure the Spring Boot Application with:
 
 
-```
+```java
 
 	@Bean
 	public I18nEnumRegistry I18nEnumRegistry() {
@@ -179,7 +170,7 @@ Configure the Spring Boot Application with:
 
 Enable SP Request Interceptor (Which helps to generate the TenantContext for each Rest request)
 
-```
+```java
 
 @Configuration
 public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
@@ -203,7 +194,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 ## Others
 
-```
+```java
 
 @Configuration
 public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
