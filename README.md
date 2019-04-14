@@ -110,7 +110,7 @@ public interface I18nEnum {
 Supply your I18nEnum implementation , for example:
 
 ```java
-public enum MessageStatus implements GenericEnumConsts {
+public enum MessageStatus implements I18nEnum {
 
     UNREAD("UNREAD", "未读"),
 
@@ -154,12 +154,12 @@ Configure the Spring Boot Application with:
 
 ```java
 
-	@Bean
-	public I18nEnumRegistry I18nEnumRegistry() {
-		I18nEnumRegistry registry = new I18nEnumRegistry();
-		registry.setScanPackage("put your package which contains the i18n enum impl");
-		return registry;
-	}
+@Bean
+public I18nEnumRegistry I18nEnumRegistry() {
+	I18nEnumRegistry registry = new I18nEnumRegistry();
+	registry.setScanPackage("put your package which contains the i18n enum impl");
+	return registry;
+}
 
 ```
 
