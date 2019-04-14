@@ -79,3 +79,108 @@ Supply your ResourceBundleMessageSource.
 ```
 
 # Development Guide
+
+## Shared API
+
+| Package | Class | 
+|---|---|
+| com.soterianetworks.spase.domain.model | Tenant
+| | Benity
+| | Department
+| | Group
+| | User
+| | UserAttribute
+| com.soterianetworks.spase.service  | DepartmentService |
+| | UserProfileService|
+| com.soterianetworks.spase.service.validator | BenityValidator |
+| | DepartmentValidator|
+| | TenantValidator|
+| | UserValidator|
+| com.soterianetworks.spase.repository | BenityRepository |
+| | DepartmentRepository |
+| | GroupRepository |
+| | TenantRepository |
+| | UserRepository |
+     
+
+## Inject Tenant Context in Rest Layer
+
+```java
+
+public class RestControllerSupport  {
+    
+	@Autowired
+	private TenantContext tenantContext;
+
+}
+
+```
+
+## Customized Repository Sample
+
+Please follow the [Torpedo Query](https://torpedoquery.org/) API Spec.
+
+
+```java
+
+@Repository
+public class DepartmentRepositoryImpl extends AbstractCustomRepository implements DepartmentCustomRepository {
+
+    @Override
+    public Page<Department> search(DepartmentSearchRequest searchRequest) {
+        Pageable pageable = searchRequest.resolvePageable();
+
+        Department from = from(Department.class);
+
+        OnGoingLogicalCondition condition = condition(from.getId()).isNotNull();
+
+        if (!StringUtils.isEmpty(searchRequest.getCode())) {
+            condition.and(from.getCode()).like().any(searchRequest.getCode());
+        }
+        if (!StringUtils.isEmpty(searchRequest.getName())) {
+            condition.and(from.getName()).like().any(searchRequest.getName());
+        }
+
+        where(condition);
+
+        Query<Long> countQuery = select(count(from)).freeze();
+        Query<Department> listQuery = select(from);
+
+        long total = countQuery.get(entityManager).orElse(0L);
+
+        if ("code".equalsIgnoreCase(searchRequest.getSortBy())) {
+            orderBy(Sort.Direction.ASC == searchRequest.getSortDirection() ?
+                    asc(from.getCode()) :
+                    desc(from.getCode()));
+        }
+        
+
+        List<Department> content = listQuery.setFirstResult(pageable.getOffset())
+                                            .setMaxResults(pageable.getPageSize())
+                                            .list(entityManager);
+
+        return PageableExecutionUtils.getPage(content, pageable, () -> total);
+
+    }
+
+}
+
+
+```
+
+## Define your exception
+
+Remember to annotated the exception with Http Response Status 
+
+```
+
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+public class UserException extends ApplicationException {
+}
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class UserNotFoundException extends UserException {
+}
+
+``` 
+
