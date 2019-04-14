@@ -205,7 +205,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public FilterRegistrationBean shallowEtagHeaderFilter() {
+    public FilterRegistrationBean characterEncodingFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
@@ -214,14 +214,14 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public LocaleResolver localeResolver() {
+    public LocaleResolver acceptHeaderLocaleResolver() {
         AcceptHeaderLocaleResolver resolver = new AcceptHeaderLocaleResolver();
         resolver.setDefaultLocale(new Locale("en_US"));
         return resolver;
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
     
