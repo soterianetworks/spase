@@ -1,6 +1,6 @@
 # Overview
 
-The SP integration library for CIP .
+The SP (Service Provider) integration library for CIP (Cloud Integration Platform) .
 
 # Gradle 
 
