@@ -239,6 +239,14 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 | | Group
 | | User
 | | UserAttribute
+| com.soterianetworks.spase.domain.request | BenitySearchRequest
+| |  DepartmentSearchRequest
+| |  PageableSearchRequest
+| |  QuickSearchRequest
+| |  TenantSearchRequest
+| com.soterianetworks.spase.domain.support |BaseSearchParam
+| |  DepartmentSearchParam
+| |  PageableSearchParam
 | com.soterianetworks.spase.service  | DepartmentService |
 | | UserProfileService|
 | com.soterianetworks.spase.service.validator | BenityValidator |
