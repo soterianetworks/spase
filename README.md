@@ -231,8 +231,8 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 
 ## Shared API
 
-| Package | Class | 
-|---|---|
+| Package | Class | Description |
+|---|---|---|
 | com.soterianetworks.spase.domain.model | Tenant
 | | Benity
 | | Department
@@ -250,7 +250,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 | | GroupRepository |
 | | TenantRepository |
 | | UserRepository |
-     
+| com.soterianetworks.spase.repository.custom |  AbstractCustomRepository |     
 
 ## Inject Tenant Context in Web Layer
 
