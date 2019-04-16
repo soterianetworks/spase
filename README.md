@@ -1,6 +1,6 @@
 # Overview
 
-The SP (Service Provider) integration library for CIP (Cloud Integration Platform) .
+The SP (Service Provider) integration library for CIA (Cloud Integration Accelerator) .
 
 # Gradle 
 
