@@ -273,6 +273,19 @@ public class RestControllerSupport  {
 
 ```
 
+```java
+public interface TenantContext {
+
+    Tenant getTenant();
+
+    Benity getBenity();
+
+    User getUser();
+
+}
+
+```
+
 ## Customized Repository Sample
 
 Please follow the [Torpedo Query](https://torpedoquery.org/) API Spec.
