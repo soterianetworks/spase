@@ -2,13 +2,15 @@
 
 The SP (Service Provider) integration library for CIA (Cloud Integration Accelerator) .
 
+https://mvnrepository.com/artifact/com.soterianetworks
+
 # Gradle 
 
 ## spase 
 
 ```groovy
-compile("com.soterianetworks:spase-core:0.9.0")
-compile("com.soterianetworks:spase-starter:0.9.0")
+compile("com.soterianetworks:spase-core:0.9.1")
+compile("com.soterianetworks:spase-starter:0.9.1")
 ```
 ## imported by spase
 
