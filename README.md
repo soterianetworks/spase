@@ -291,15 +291,10 @@ public interface TenantContext {
 ## Enable Exception Handler
 
 ```java
-
-import com.soterianetworks.spase.exception.SpExceptionHandler;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-
-@ControllerAdvice("your.package")
+@ControllerAdvice(annotations = {RestController.class})
 public class MyExceptionHandler extends SpExceptionHandler {
 }
 ```
-
 
 ## Customized Repository Sample
 
