@@ -9,8 +9,8 @@ https://mvnrepository.com/artifact/com.soterianetworks
 ## spase 
 
 ```groovy
-compile("com.soterianetworks:spase-core:0.9.1")
-compile("com.soterianetworks:spase-starter:0.9.1")
+compile("com.soterianetworks:spase-core:0.9.2")
+compile("com.soterianetworks:spase-starter:0.9.2")
 ```
 ## imported by spase
 
@@ -287,6 +287,19 @@ public interface TenantContext {
 }
 
 ```
+
+## Enable Exception Handler
+
+```java
+
+import com.soterianetworks.spase.exception.SpExceptionHandler;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice("your.package")
+public class MyExceptionHandler extends SpExceptionHandler {
+}
+```
+
 
 ## Customized Repository Sample
 
