@@ -10,9 +10,9 @@ There are three ways to integrate the SP to CIP.
 
 Way To Integration |  Description
 ---|---
-| [CIP Managed SP](./cipped.md) | Everything is managed by CIP
+| [CIP Managed](./cipped.md) | Everything is managed by CIP
 | | And deployed as member in CIP 
-[SP Managed ](./sped.md)  | Everything is managed by SP
+[SP Managed](./sped.md)  | Everything is managed by SP
 | | The user authn & authz are delegated to CIP
 | | The frontend is integrated into CIP in the way of OAuth2 IMPLICIT grant_type. 
 | | The micro service provided by SP will register to CIP's registry
