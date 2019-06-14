@@ -1,5 +1,16 @@
-[TOC]
+# Table of Content
 
+* [Build](#build)
+	* [Gradle](#gradle---buildgradle) 
+	* [Maven](##maven---pomxml)
+* [Configuration](#configuration)
+	* [Spase Properties](#spase-properties)
+	* [Spring application.yml](#spring-applicationyml)
+	* [Spring Security Configuration](#spring-security-configuration)
+	* [Create your own SP application](#create-your-own-sp-application)
+* [Appendix - Spase Spring Boot Starter](#appendix---spase-spring-boot-starter)
+* [Appendix - Spase Standalone Spring Security Implementations](#appendix---spase-standalone-spring-security-implementations)
+	
 # Build 
 
 ## Gradle - build.gradle 
