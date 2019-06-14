@@ -1,6 +1,6 @@
 # Overview
 
-The SP (Service Provider) integration library for CIA (Cloud Integration Accelerator) .
+The SP (Service Provider) integration library for CIP (Cloud Integration Platform) .
 
 https://mvnrepository.com/artifact/com.soterianetworks
 
