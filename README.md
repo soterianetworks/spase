@@ -6,7 +6,7 @@ https://mvnrepository.com/artifact/com.soterianetworks
 
 # Integration Ways
 
-There are three ways to integrate the SP to CIP.
+There are three ways to integrate SP to CIP.
 
 Way To Integration |  Description
 ---|---
