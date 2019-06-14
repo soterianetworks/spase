@@ -3,13 +3,24 @@
 ## spase 
 
 ```groovy
-compile("com.soterianetworks:spase-std:0.9.10")
+compile("com.soterianetworks:spase-cipped:0.9.18")
+compile("com.soterianetworks:spase-cipped-starter:0.9.18")
+
 ```
 ## imported by spase
 
 * commons-logging:commons-logging:1.1.3
 * org.apache.commons:commons-lang3:3.8.1
 * com.google.guava:guava:21.0
+* org.torpedoquery:org.torpedoquery:2.5.1
+
+## 3rds
+
+```groovy
+compile("mysql:mysql-connector-java:5.1.47")
+```
+
+> fasterxml & jackson & hibernate & validation will be auto imported by spring-boot
 
 # Configuration
 
@@ -17,7 +28,22 @@ compile("com.soterianetworks:spase-std:0.9.10")
 
 ```yml
 spring:
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: ${JPA_DIALECT:org.hibernate.dialect.MySQL5Dialect}
+      javax:
+        persistence:
+          query:
+            timeout: 300000
+  datasource:
+    url:  ${DB_URL:jdbc:mysql://127.0.0.1:3306/spase_database?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true}
+    driver-class-name: ${DB_DRIVER:com.mysql.jdbc.Driver}
+    username:  ${DB_USER:spase_user}
+    password:  ${DB_PASSWORD:spase_password}
 
 ```
 
@@ -33,6 +59,21 @@ Supply your ResourceBundleMessageSource (Which helps to generate the i18n Error 
 
 @Configuration
 public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:locale/messages");
+        messageSource.setCacheSeconds(3600); //refresh cache once per hour
+        return messageSource;
+    }
+
+    @Bean
+    public Validator i18nValidator() {
+        LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+        validator.setValidationMessageSource(messageSource());
+        return validator;
+    }
 
 }
 
@@ -190,6 +231,7 @@ public class XxxWebMvcConfigurer extends WebMvcConfigurerAdapter {
 | | Department
 | | Group
 | | User
+| | UserAttribute
 | com.soterianetworks.spase.domain.request | BenitySearchRequest
 | |  DepartmentSearchRequest
 | |  PageableSearchRequest
