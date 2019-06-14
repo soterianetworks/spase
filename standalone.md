@@ -1,3 +1,5 @@
+[TOC]
+
 # Build 
 
 ## Gradle - build.gradle 
@@ -34,40 +36,6 @@ dependencies {
 </dependencies>
 
 ```
-
-## Spase Spring Boot Starter
-
-Enable Spase Standalone Spring Boot Starter by adding `com.soterianetworks:spase-standalone-starter` to build path
-
-> spring.factories 
-
-```ini
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.soterianetworks.spase.starter.SpaseAutoConfiguration
-```
-
-> com.soterianetworks.spase.starter.SpaseAutoConfiguration
-> 1. auto scan the package `com.soterianetworks.spase`
-> 2. auto enable `SpaseProperties` with prefix `spase.client`
-
-```java
-@Configuration
-@ComponentScan({"com.soterianetworks.spase"})
-@EnableConfigurationProperties(SpaseAutoConfiguration.MySpaseProperties.class)
-public class SpaseAutoConfiguration {
-
-    @ConfigurationProperties("spase.client")
-    public class MySpaseProperties extends DefaultSpaseProperties {
-
-    }
-
-}
-```
-
-And it imports following configurations automatically
-
-* com.soterianetworks.spase.starter.config.CacheConfigurer
-* com.soterianetworks.spase.config.FeignClientConfigurer
 
 # Configuration
 
@@ -169,6 +137,41 @@ public class StandaloneSpApplication {
 
 }
 ```
+
+
+# Appendix - Spase Spring Boot Starter
+
+Enable Spase Standalone Spring Boot Starter by adding `com.soterianetworks:spase-standalone-starter` to build path
+
+> spring.factories 
+
+```ini
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.soterianetworks.spase.starter.SpaseAutoConfiguration
+```
+
+> com.soterianetworks.spase.starter.SpaseAutoConfiguration
+> 1. auto scan the package `com.soterianetworks.spase`
+> 2. auto enable `SpaseProperties` with prefix `spase.client`
+
+```java
+@Configuration
+@ComponentScan({"com.soterianetworks.spase"})
+@EnableConfigurationProperties(SpaseAutoConfiguration.MySpaseProperties.class)
+public class SpaseAutoConfiguration {
+
+    @ConfigurationProperties("spase.client")
+    public class MySpaseProperties extends DefaultSpaseProperties {
+
+    }
+
+}
+```
+
+And it imports following configurations automatically
+
+* com.soterianetworks.spase.starter.config.CacheConfigurer
+* com.soterianetworks.spase.config.FeignClientConfigurer
 
 
 # Appendix - Spase Standalone Spring Security Implementations
