@@ -1,25 +1,25 @@
 # Overview
 
-The SP (Service Provider) integration library for CIP (Cloud Integration Platform) .
+The SP (Service Provider) base library for integration with Soteria Networks CIP (Cloud Integration Platform) .
 
 https://mvnrepository.com/artifact/com.soterianetworks
 
-# Integration Ways
+# Integration Modes
 
-There are three ways to integrate SP to CIP.
+There are three ways to integrate a SP to the CIP.
 
-Way To Integration |  Description
+Integration Mode|  Description
 ---|---
 | [CIP Managed](./cipped.md) | Everything is managed by CIP  (db, cache, mq ...)
 | | And deployed as member in CIP 
 [SP Managed](./sped.md)  | Everything is managed by SP (db, cache, mq ...)
 | | The user authn & authz are delegated to CIP
-| | The frontend is integrated into CIP in the way of OAuth2 IMPLICIT grant_type. 
+| | The frontend is integrated with CIP by way of OAuth2 IMPLICIT grant_type. 
 | | * The micro service provided by SP will register to CIP's registry
 | | * The frontend accesses the micro service through CIP gateway
 |[Standalone](./standalone.md) | Everything is managed by SP (db, cache, mq ...)
 | | The user authn & authz are delegated to CIP
-| | The frontend is integrated into CIP in the way of OAuth2 IMPLICIT grant_type. 
-| | * SP manages the micro service by itself
-| | * The frontend accesses the micro service in its own way
+| | The frontend is integrated with CIP by way of OAuth2 IMPLICIT grant_type. 
+| | * SP manages the backend micro service by itself
+| | * The frontend accesses the backend micro service directly
 
