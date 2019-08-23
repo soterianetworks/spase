@@ -85,7 +85,7 @@ public class YourService {
     @Autowired
     private MessageDispatcher messageDispatcher;
     
-	private Resource photo = new ClassPathResource("/binary-sample-file.png");
+    private Resource photo = new ClassPathResource("/binary-sample-file.png");
 
     @Override
     public void sendToUser() {
