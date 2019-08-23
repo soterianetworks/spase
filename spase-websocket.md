@@ -59,7 +59,7 @@ First, please use Stomp over Websocket in web browser.
 This means that the following source can't work in backend
 
 ```java
-	MessageBuilder.queue("binary").binary(data).accept(messageDispatcher);
+    MessageBuilder.user("your-target-user-name-or-id").binary(data).accept(messageDispatcher);
 ```
  
 * If you want the Websocket stream , please enable the original WebSocket protocol in browser  
