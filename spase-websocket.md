@@ -43,7 +43,21 @@ Please get the latest version from
 
 ## API Usage Sample
 
-1. inject dispatcher
+1. spring boot - scan the spase-ws components
+
+```java
+@SpringBootApplication
+@ComponentScan("com.soterianetworks.spase")
+public class SpaseWebsocketTestApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(new Object[]{SpaseWebsocketTestApplication.class}, args);
+    }
+
+}
+```
+
+2. spring - inject dispatcher
 
 ```java
 
@@ -56,7 +70,7 @@ public class YourService {
 
 ```
 
-2. send message to target
+3. api usage - send message to target
 
 target type | param | description 
 ---|---|---
