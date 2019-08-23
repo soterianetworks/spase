@@ -45,6 +45,29 @@ Please get the latest version from
 
 TODO
 
+## API Compatibility
+
+First, please use Stomp over Websocket in web browser.
+
+* If you use SockJS as Websocket client , you can't send binary stream from server to client.
+
+```javascript
+    var socket = new SockJS("http://127.0.0.1:8081/websocket");
+    var stompClient = Stomp.over(socket);
+```
+
+This means that the following source can't work in backend
+
+```java
+	MessageBuilder.queue("binary").binary(data).accept(messageDispatcher);
+```
+ 
+* If you want the Websocket stream , please enable the original WebSocket protocol in browser  
+
+```javascript
+    var stompClient = Stomp.client("ws://127.0.0.1:8081/websocket");
+```
+
 ## API Usage Sample
 
 1. spring boot - scan the spase-ws components
@@ -135,3 +158,4 @@ public class YourService {
 }
         
 ```
+
