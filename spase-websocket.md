@@ -41,6 +41,10 @@ Please get the latest version from
 	compile "com.soterianetworks:spase-ws-starter:${spase-ws-version}"
 ```
 
+## Web Socket Endpoint 
+
+TODO
+
 ## API Usage Sample
 
 1. spring boot - scan the spase-ws components
